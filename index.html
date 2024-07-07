@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz App</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="quiz-container">
+      <div id="quiz"></div>
+      <button id="next-button" onclick="nextQuestion()" disabled>Next</button>
+    </div>
+    <div id="admin-container">
+      <div style="display: flex; gap: 10px">
+        <button id="admin-button" onclick="showAdminLogin()">Admin</button>
+        <button id="back-button">back</button>
+      </div>
+      <div id="admin-login" style="display: none">
+
+          <input
+            type="password"
+            id="admin-password"
+            placeholder="Enter Admin Password"
+          />
+          <button onclick="adminLogin()">Login</button>
+      </div>
+      <div id="admin-panel" style="display: none">
+        <input type="text" id="new-question" placeholder="Enter new question" />
+        <input type="text" id="option1" placeholder="Option 1" />
+        <input type="text" id="option2" placeholder="Option 2" />
+        <input type="text" id="option3" placeholder="Option 3" />
+        <input type="text" id="option4" placeholder="Option 4" />
+        <input
+          type="number"
+          id="correct-option"
+          placeholder="Correct Option Number"
+        />
+        <div>
+          <button onclick="addQuestion()">Add Question</button>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

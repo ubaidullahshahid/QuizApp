@@ -14,7 +14,7 @@ window.onload = function () {
     !isLoggedIn &&
     !window.location.pathname.includes("/login/login.html")
   ) {
-    window.location.href = "/login/login.html";
+    window.location.href = "login/login.html";
     console.log("Redirecting to login.html");
   }
 };

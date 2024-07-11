@@ -7,9 +7,9 @@ isLoggedIn = isLoggedIn ? JSON.parse(isLoggedIn) : false;
 window.onload = function () {
   console.log("Page loaded.");
   console.log("Login status:", isLoggedIn);
-  if (isLoggedIn && !window.location.pathname.includes("/index.html")) {
+  if (isLoggedIn && !window.location.pathname.includes("/")) {
     console.log("Redirecting to index.html");
-    window.location.href = "/index.html";
+    window.location.href = "/";
   } else if (
     !isLoggedIn &&
     !window.location.pathname.includes("/login/login.html")

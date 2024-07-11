@@ -6,7 +6,7 @@ const quizData = JSON.parse(localStorage.getItem("quizData")) || [
   },
   {
     question: "Which programming language is known as the language of the web?",
-    options: ["Python", "C++", "JavaScript", "Java"],
+    options: ["A. Python", "C++", "JavaScript", "Java"],
     correct: 2,
   },
   {
@@ -40,6 +40,7 @@ const quizData = JSON.parse(localStorage.getItem("quizData")) || [
     correct: 4,
   },
 ];
+
 
 let currentQuestionIndex = 0;
 let score = 0;

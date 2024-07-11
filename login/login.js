@@ -19,7 +19,7 @@ window.onload = function () {
   }
 };
 
-if (location.pathname === "/login/login.html") {
+if (location.pathname.includes("login.html")) {
   let form = document.querySelector(".login-form");
 
   form.addEventListener("submit", (e) => {

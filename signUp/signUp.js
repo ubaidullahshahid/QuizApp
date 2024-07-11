@@ -1,7 +1,7 @@
 let userData = localStorage.getItem("userData");
 userData = userData ? JSON.parse(userData) : [];
 
-if (location.pathname === "/signUp/signup.html") {
+if (location.pathname.includes("signup.html")) {
   let form = document.querySelector(".sign-up-form");
   form.addEventListener("submit", function (e) {
     e.preventDefault();

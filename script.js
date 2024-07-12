@@ -44,9 +44,7 @@ const quizData = JSON.parse(localStorage.getItem("quizData")) || [
 let isLoggedIn = localStorage.getItem("login");
 isLoggedIn = isLoggedIn ? JSON.parse(isLoggedIn) : false;
 
-if (isLoggedIn) {
-  window.location.pathname = "/";
-} else {
+if (!isLoggedIn) {
   window.location.pathname = "../login/login.html";
 }
 

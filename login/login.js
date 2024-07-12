@@ -1,24 +1,16 @@
 let user = localStorage.getItem("userData");
 user = user ? JSON.parse(user) : [];
 
-let isLoggedIn = localStorage.getItem("login");
-isLoggedIn = isLoggedIn ? JSON.parse(isLoggedIn) : false;
+// let isLoggedIn = localStorage.getItem("login");
+// isLoggedIn = isLoggedIn ? JSON.parse(isLoggedIn) : true;
 
-window.onload = function () {
-  console.log("Page loaded.");
-  console.log("Login status:", isLoggedIn);
-  console.log(window.location.pathname.includes("/login/login.html"));
-  if (isLoggedIn && !window.location.pathname.includes("/")) {
-    console.log("Redirecting to index.html");
-    window.location.pathname = "../";
-  } else if (
-    !isLoggedIn &&
-    !window.location.pathname.includes("/login/login.html")
-  ) {
-    window.location.pathname = "../login/login.html";
-    console.log("Redirecting to login.html");
-  }
-};
+// window.onload = function () {
+//   if (isLoggedIn) {
+//     window.location.pathname = "/";
+//   } else {
+//     window.location.pathname = "../login/login.html";
+//   }
+// };
 
 if (location.pathname.includes("login.html")) {
   let form = document.querySelector(".login-form");
@@ -34,6 +26,7 @@ if (location.pathname.includes("login.html")) {
       isLoggedIn = true;
       localStorage.setItem("login", JSON.stringify(isLoggedIn));
       window.location.pathname = "/";
+      x;
     } else {
       alert("Invalid email or password");
     }

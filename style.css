@@ -1,31 +1,111 @@
 body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    background-color: #f0f0f0;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background: linear-gradient(to bottom, #0000ff, white);
+  width: 100%;
+
 }
 
-#quiz-container, #admin-container {
-    margin: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    width: 300px;
+.log-out-btn {
+  background-color: #333;
+  border-radius: 10px;
+  padding: 12px 20px;
+  font-size: 14px;
+  line-height: 15px;
+  color: whitesmoke;
+  font-weight: bold;
+  border: none;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  box-shadow: 0px 0px 30px -10px black;
+  -webkit-box-shadow: 0px 0px 30px -10px black;
+  -moz-box-shadow: 0px 0px 30px -10px black;
+  cursor: pointer;
+}
+
+#quiz-container {
+  background: #333;
+  padding: 40px 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
 }
 
 #quiz {
-    margin-bottom: 10px;
+  width: 100%;
+  margin-bottom: 10px;
 }
 
-#admin-panel input {
-    display: block;
-    margin: 10px 0;
+#quiz h4, h2{
+ color: white;
 }
 
-#back-button {
-    display: none;
+#quiz .option-btn {
+  display: block;
+  width: 100%;
 }
+
+#quiz button {
+  background-color: #fff;
+  border: none;
+  color: #333;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 12px;
+  width: 100%;
+}
+
+#quiz button:hover {
+  opacity: 0.8;
+}
+
+#quiz button:focus {
+  background-color: bisque;
+}
+
+#next-button{
+  width: 100%;
+  color: white;
+  border: none;
+  padding: 10px ;
+  border-radius: 10px;
+  cursor: pointer;
+  background: linear-gradient(to top, #0000ff, #0000ff);
+}
+
+#next-button:hover{
+  opacity: 0.7;
+}
+
+#result-button{
+  width: 40%;
+  color: white;
+  border: none;
+  padding: 10px ;
+  border-radius: 10px;
+  cursor: pointer;
+  background: linear-gradient(to top, #0000ff, #0000ff);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.result-text{
+  display: none;
+}
+

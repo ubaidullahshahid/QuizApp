@@ -40,6 +40,10 @@ const quizData = JSON.parse(localStorage.getItem("quizData")) || [
     correct: 4,
   },
 ];
+localStorage.setItem("quizData", JSON.stringify(quizData));
+
+let userData = JSON.parse(localStorage.getItem("userData")) || [];
+let currentIndex = JSON.parse(localStorage.getItem("currentIndex")) || 0;
 
 let isLoggedIn = localStorage.getItem("login");
 isLoggedIn = isLoggedIn ? JSON.parse(isLoggedIn) : false;
@@ -52,94 +56,65 @@ let currentQuestionIndex = 0;
 let score = 0;
 let selectedAnswer = null;
 
-function loadQuestion() {
-  selectedAnswer = null;
-  document.getElementById("next-button").disabled = true;
+if (userData[currentIndex].result === false) {
+  function loadQuestion() {
+    selectedAnswer = null;
+    document.getElementById("next-button").style.display = "none";
 
-  if (currentQuestionIndex >= quizData.length) {
-    document.getElementById(
-      "quiz-container"
-    ).innerHTML = `<h2>Your score: ${score} / ${quizData.length}</h2>`;
-    return;
+    if (currentQuestionIndex >= quizData.length) {
+      document.getElementById(
+        "quiz-container"
+      ).innerHTML = `<h2>Your score: ${score} / ${quizData.length}</h2>`;
+      userData[currentIndex].result = true;
+      localStorage.setItem("userData", JSON.stringify(userData));
+      return;
+    }
+
+    const questionData = quizData[currentQuestionIndex];
+    document.getElementById("quiz").innerHTML = `
+          <h4>${questionData.question}</h4>
+          ${questionData.options
+            .map(
+              (option, index) =>
+                `<button onclick="selectAnswer(${index})">${option}</button>`
+            )
+            .join("")}
+            `;
+  }
+  function selectAnswer(selectedIndex) {
+    selectedAnswer = selectedIndex;
+    document.getElementById("next-button").style.display = "block";
   }
 
-  const questionData = quizData[currentQuestionIndex];
-  document.getElementById("quiz").innerHTML = `
-        <h2>${questionData.question}</h2>
-        ${questionData.options
-          .map(
-            (option, index) =>
-              `<button onclick="selectAnswer(${index})">${option}</button>`
-          )
-          .join("")}
-    `;
-}
+  function nextQuestion() {
+    if (selectedAnswer === null) return;
+    const questionData = quizData[currentQuestionIndex];
+    if (selectedAnswer === questionData.correct) {
+      score++;
+      alert("Correct answer!");
+    } else {
+      alert("Wrong answer!");
+    }
 
-function selectAnswer(selectedIndex) {
-  selectedAnswer = selectedIndex;
-  document.getElementById("next-button").disabled = false;
-}
-
-function nextQuestion() {
-  if (selectedAnswer === null) return;
-
-  const questionData = quizData[currentQuestionIndex];
-  if (selectedAnswer === questionData.correct) {
-    score++;
-    alert("Correct answer!");
-  } else {
-    alert("Wrong answer!");
+    currentQuestionIndex++;
+    loadQuestion();
   }
+} else {
+  document.getElementById("quiz").style.display = "none";
+  document.getElementById("next-button").style.display = "none";
+  document.querySelector(".result-text").style.display = "block";
+  let resultBtn = document.getElementById("result-button");
+  resultBtn.style.display = "flex";
+  console.log(resultBtn);
+  // let quizContainer = document.getElementById("quiz-container");
+  // quizContainer.innerHTML = ``;
 
-  currentQuestionIndex++;
-  loadQuestion();
 }
 
-const backButton = document.getElementById("back-button");
-const logInBtn = document.getElementById("admin-login");
-const quizContainer = document.getElementById("quiz-container");
-const adminPannel = document.getElementById("admin-panel");
-function showAdminLogin() {
-  logInBtn.style.display = "block";
-  quizContainer.style.display = "none";
-  backButton.style.display = "block";
-}
-
-backButton.addEventListener("click", function () {
-  quizContainer.style.display = "flex";
-  logInBtn.style.display = "none";
-  adminPannel.style.display = "none";
-  backButton.style.display = "none";
+let logoutBtn = document.querySelector(".log-out-btn");
+logoutBtn.addEventListener("click", function () {
+  localStorage.removeItem("login");
+  window.location.pathname = "../login/login.html";
 });
-
-function adminLogin() {
-  const password = document.getElementById("admin-password").value;
-  if (password === "admin123") {
-    adminPannel.style.display = "block";
-    logInBtn.style.display = "none";
-  } else {
-    alert("Password is incorrect");
-  }
-}
-
-function addQuestion() {
-  const newQuestion = document.getElementById("new-question").value;
-  const options = [
-    document.getElementById("option1").value,
-    document.getElementById("option2").value,
-    document.getElementById("option3").value,
-    document.getElementById("option4").value,
-  ];
-  const correctOption =
-    parseInt(document.getElementById("correct-option").value) - 1;
-
-  if (newQuestion && options.every((option) => option) && correctOption < 4) {
-    quizData.push({ question: newQuestion, options, correct: correctOption });
-    localStorage.setItem("quizData", JSON.stringify(quizData));
-    alert("Question added successfully");
-  } else {
-    alert("Please fill in all fields correctly");
-  }
-}
 
 document.addEventListener("DOMContentLoaded", loadQuestion);

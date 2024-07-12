@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <button class="log-out-btn">Log Out</button>
+    <div id="admin-panel">
+      <h1>Add Quiz Question</h1>
+      <input type="text" id="new-question" placeholder="Enter new question" />
+      <input type="text" id="option1" placeholder="Option 1" />
+      <input type="text" id="option2" placeholder="Option 2" />
+      <input type="text" id="option3" placeholder="Option 3" />
+      <input type="text" id="option4" placeholder="Option 4" />
+      <input
+        type="number"
+        id="correct-option"
+        placeholder="Correct Option Number"
+      />
+      <div style="display: flex; justify-content: space-between; width: 90%">
+        <button onclick="addQuestion()" class="add-ques-button">
+          Add Question
+        </button>
+      </div>
+    </div>
+    <script src="./admin.js"></script>
+  </body>
+</html>

@@ -66,7 +66,6 @@ if (userData[currentIndex].result === false) {
         "quiz-container"
       ).innerHTML = `<h2>Your score: ${score} / ${quizData.length}</h2>`;
       userData[currentIndex].result = true;
-      userData[currentIndex].score = `${score} / ${quizData.length}`;
       localStorage.setItem("userData", JSON.stringify(userData));
       return;
     }
@@ -105,9 +104,6 @@ if (userData[currentIndex].result === false) {
   document.getElementById("next-button").style.display = "none";
   document.querySelector(".result-text").style.display = "block";
   let resultBtn = document.getElementById("result-button");
-  resultBtn.addEventListener("click",function(){
-    document.querySelector(".result-text").innerHTML += userData[currentIndex].score;
-  });
   resultBtn.style.display = "flex";
   console.log(resultBtn);
   // let quizContainer = document.getElementById("quiz-container");

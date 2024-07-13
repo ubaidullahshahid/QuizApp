@@ -22,5 +22,7 @@ form.addEventListener("submit", function (e) {
     currentUser.username = formData.get("username");
     userData.push(currentUser);
     localStorage.setItem("userData", JSON.stringify(userData));
+    alert("Account created successfully");
+    window.location.href = "/login/login.html";
   }
 });

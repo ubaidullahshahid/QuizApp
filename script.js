@@ -1,5 +1,10 @@
 const quizData = JSON.parse(localStorage.getItem("quizData")) || [
   {
+    question: "Which country is known as the Land of the Rising Sun?",
+    options: ["China", "Japan", "South Korea", "Thailand"],
+    correct: 2,
+  },
+  {
     question: "What is 2 + 2?",
     options: ["3", "4", "5", "6"],
     correct: 1,
@@ -23,11 +28,6 @@ const quizData = JSON.parse(localStorage.getItem("quizData")) || [
     question: "What is the square root of 16?",
     options: ["2", "4", "6", "8"],
     correct: 1,
-  },
-  {
-    question: "Which country is known as the Land of the Rising Sun?",
-    options: ["China", "Japan", "South Korea", "Thailand"],
-    correct: 2,
   },
   {
     question: "Who painted the Mona Lisa?",
@@ -66,6 +66,7 @@ if (userData[currentIndex].result === false) {
         "quiz-container"
       ).innerHTML = `<h2>Your score: ${score} / ${quizData.length}</h2>`;
       userData[currentIndex].result = true;
+      userData[currentIndex].score = `${score} / ${quizData.length}`;
       localStorage.setItem("userData", JSON.stringify(userData));
       return;
     }
@@ -104,6 +105,9 @@ if (userData[currentIndex].result === false) {
   document.getElementById("next-button").style.display = "none";
   document.querySelector(".result-text").style.display = "block";
   let resultBtn = document.getElementById("result-button");
+  resultBtn.addEventListener("click",function(){
+    document.querySelector(".result-text").innerHTML += userData[currentIndex].score;
+  });
   resultBtn.style.display = "flex";
   console.log(resultBtn);
   // let quizContainer = document.getElementById("quiz-container");
